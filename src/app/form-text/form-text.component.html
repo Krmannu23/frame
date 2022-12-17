@@ -1,0 +1,15 @@
+<div class="container">
+   <div>{{label}}</div><br>
+  <div>
+    <span>{{currency}}</span>
+    <input
+    [placeholder]="placeholder"
+    type="text"
+    [disabled]="isDisable"
+    [(ngModel)]="value"
+    [ngClass]="{invalid: (invalid | async)}" />
+  <validation-messages *ngIf="invalid | async" [messages]="failures | async">
+  </validation-messages>
+  </div>
+  
+</div>

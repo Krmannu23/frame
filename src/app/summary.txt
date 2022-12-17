@@ -1,0 +1,12 @@
+To summarize:
+
+ValueAccessor<T>:
+Implements the Control Value Accessor pattern from Angular
+
+ElementBase<T> extends ValueAccessor<T>:
+
+Provides observable values to its parent about its validity state
+Provides a validate method which can also be used in the control and which works off of validators injected through hierarchical dependency injection (eg. a required or minlength directive).
+Actual @Component for input controls will extend ElementBase<T> where T is the type of data that control deals with (string for text box, boolean for checkbox, etc).
+
+https://rangle.io/blog/angular-2-ngmodel-and-custom-form-components/

@@ -1,0 +1,88 @@
+++++++++++++++++++++++++Objective+++++++++++
+1. We are building complex forms element  that have custom validators, styling,
+   and behaviours that make using plain <input> tags all over the place unsuitable.
+
+ 2.We will create custom form input controls that bind to ngModel and have complex validation behaviour.
+
+ 3. we are going to build some form input controls that behave like core input elements like <select>, <input> and <textarea>
+
+ 4.The only  difference b/w standard input and custom input will also display inline validation, failure messages, and will dynamically style itself based on whether the value inside is valid or invalid (i.e. we will set a red border on ourselves when we fail to validate).
+
+ 5.Standard form element usage:input type="text" [(ngModel)]="myValue" required />
+
+ 6.Our custom form element component usage:<form-text [(ngModel)]="myValue" required />
+
+ 7.Our custom form element component render inline validation failure messages, whereas the standard <input> control will not.
+
+ 8.Our controls will not know ahead of time what validators will be applied to them, but they will style themselves with red borders if they fail to validate. Validators will be specified at the place that you use the control, not inside of the control itself. They will be queried through the hierarchical dependency injection system. 
+ We will ask our parent scope for them through @Inject(), not @Input().
+
++++++++++++++++++++++++++++++++++
+A Form Container Element:
+
+
+step1 :First, let’s create a form context which will be responsible for aggregating our form inputs into a single form instance (NgForm). When we call form.valid on this instance, it will give us the aggregate validity state of all its inputs. When we call form.value,
+ it will collect values from every input in the form and give it back to us in the form of a simple object.
+
+ step2:We will disable our “Submit” button if the form fails validation.
+
+
+ +++++++++++++++++++++++How to use control value accessor ,ValueAccessorBase<T>,ElementBase<T>++++++++
+
+ step1:create ValueAccessorBase<T> and extends control value accessor.
+
+ step2:Replace  
+ 
+    public onChange(name:T):void{}
+
+    public onTouched():void{}
+
+
+    with 
+    
+  private changed = new Array<(value: T) => void>();
+  private touched = new Array<() => void>();
+   
+
+   because we  will use array ,and forEach,push
+
+   step3:we use above class in ElementBase<T> (another abstract base class called ElementBase<T> which extends ValueAccessorBase<T>. )
+
+   **important:
+   We will inherit our various input controls from ElementBase<T>. It is responsible for supplying validity state and methods to the derived component, 
+   whereas ValueAccessorBase is responsible for implementing the control value accessor pattern from Angular.
+
+step3:create a validate file ,where in this file we create a messages classs
+
+step4:create a validation messages component
+
+step5:use following code in componenet
+
+//use following section in in coponent
+
+
+export class FormTextComponent  extends ElementBase<string> {
+    @Input() public label: string;
+    @Input() public placeholder: string;
+  
+  
+    @ViewChild(NgModel) model: NgModel;
+  
+  
+    public identifier = `form-select-${identifier++}`;
+  
+  
+    constructor(
+      @Optional() @Inject(NG_VALIDATORS) validators: Array<any>,
+      @Optional() @Inject(NG_ASYNC_VALIDATORS) asyncValidators: Array<any>,
+    ) {
+      super(validators, asyncValidators);
+    }
+  }
+  
+  
+  let identifier = 0;
+
+
+
+
