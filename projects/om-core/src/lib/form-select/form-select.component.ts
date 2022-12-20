@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-form-select',
+  selector: 'lib-form-select',
   templateUrl: './form-select.component.html',
   styleUrls: ['./form-select.component.css']
 })

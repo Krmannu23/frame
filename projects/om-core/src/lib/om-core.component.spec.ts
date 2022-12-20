@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ValidationMessagesComponent } from './validation-messages.component';
+import { OmCoreComponent } from './om-core.component';
 
-describe('ValidationMessagesComponent', () => {
-  let component: ValidationMessagesComponent;
-  let fixture: ComponentFixture<ValidationMessagesComponent>;
+describe('OmCoreComponent', () => {
+  let component: OmCoreComponent;
+  let fixture: ComponentFixture<OmCoreComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ValidationMessagesComponent ]
+      declarations: [ OmCoreComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ValidationMessagesComponent);
+    fixture = TestBed.createComponent(OmCoreComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

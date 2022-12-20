@@ -31,7 +31,7 @@ import {
   
   
   export const composeValidators =
-      (validators: ValidatorArray): AsyncValidatorFn | ValidatorFn => {
+      (validators: Array<Validator | ValidatorFn>): AsyncValidatorFn | ValidatorFn => {
     if (validators == null || validators.length === 0) {
       return null;
     }
@@ -69,7 +69,8 @@ import {
   };
 
   //class for msg
-  export const message = (validator: ValidationResult, key: string): string => {
+  export const message = (validator: ValidationResult, key: string,element:any): string => {
+    const LABEL=element.label ? 'Hgg':'yuur';
     switch (key) {
       case 'required':
         return 'Please enter a value';
