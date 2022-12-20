@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'om-core',
   template: `
     <p>
-      om-core works!
+     <form-text></form-text>
     </p>
   `,
   styles: [

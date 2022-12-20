@@ -15,8 +15,6 @@ import { FormSelectComponent } from './form-select/form-select.component';
   ],
   exports: [
     OmCoreComponent,
-    FormTextComponent,
-    FormSelectComponent
   ]
 })
 export class OmCoreModule { }
